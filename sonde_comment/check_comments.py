@@ -31,6 +31,17 @@ parser.add_argument('-c', '--crit', dest='critical', type=int, required=True ,
 parser.add_argument('-t', '--time', dest='time', type=int, required=True ,
                     help='duration of the search (in hour)')
 
+parser.add_argument('-H', '--host', dest='host', type=str, required=True ,
+                    help='Database Host IP')
+
+parser.add_argument('-U', '--user', dest='user', type=str, required=True ,
+                    help='Username to connect to the database')
+
+parser.add_argument('-P', '--password', dest='passwd', type=str, required=True ,
+                    help='Password to connect to the database')
+
+parser.add_argument('-D', '--database', dest='db', type=str, required=True ,
+                    help='Database name')
 
 args = parser.parse_args()
 
@@ -38,10 +49,10 @@ args = parser.parse_args()
 #Database / data to change
 
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="admin",
-  password="pass",
-  database="wordpress"
+  host= args.host,
+  user= args.user,
+  password= args.passwd,
+  database= args.db
 )
 
 mycursor = mydb.cursor()
